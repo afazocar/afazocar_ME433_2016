@@ -61,8 +61,19 @@ int main() {
     __builtin_enable_interrupts();
     
     while(1) {
+        
+        // Turn off LED while button is pressed
+        while(PORTBbits.RB4 == 0) {
+            LATAbits.LATA4 = 0;
+        }
+        
 	    // use _CP0_SET_COUNT(0) and _CP0_GET_COUNT() to test the PIC timing
 		// remember the core timer runs at half the CPU speed
+        // Toggle LED at 1000 Hz
+        if (_CP0_GET_COUNT() > 24000){ 
+            LATAbits.LATA4 = !LATAbits.LATA4;
+            _CP0_SET_COUNT(0);
+        }
     }
     
     
