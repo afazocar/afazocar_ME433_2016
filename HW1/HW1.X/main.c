@@ -53,7 +53,10 @@ int main() {
     // disable JTAG to get pins back
     DDPCONbits.JTAGEN = 0;
     
-    // do your TRIS and LAT commands here
+    // do your TRIS and LAT commands here 
+    TRISBbits.TRISB4    = 1;        // Set B4 (push-button) as input pin
+    TRISAbits.TRISA4    = 0;        // Set A4 (LED) as output
+    LATAbits.LATA4      = 1;        // Set A4 as high
     
     __builtin_enable_interrupts();
     
