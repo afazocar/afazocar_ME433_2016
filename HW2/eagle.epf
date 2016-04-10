@@ -348,12 +348,5 @@ UsedLibrary="/Applications/EAGLE-7.5.0/lbr/zetex.lbr"
 UsedLibrary="/Applications/EAGLE-7.5.0/lbr/zilog.lbr"
 UsedLibrary="me433.lbr"
 
-[Win_1]
-Type="Control Panel"
-Loc="87 148 770 547"
-State=2
-Number=0
-
 [Desktop]
 Screen="1440 900"
-Window="Win_1"
