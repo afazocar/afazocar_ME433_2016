@@ -21,7 +21,13 @@ import static android.graphics.Color.green;
 import static android.graphics.Color.red;
 
 public class MainActivity extends Activity implements TextureView.SurfaceTextureListener {
-    SeekBar pickRow;
+    SeekBar     pickRow;
+    TextView    pickRowText;
+    SeekBar     pickThreshold;
+    TextView    pickThresholdText;
+    int         startY = 50*4; // Start tracking from row 200 (progress bar starts at 50%)
+    double      blackThreshold = 80*7.5; // Start threshold at 600 (progress bar starts at 80%)
+
     private Camera mCamera;
     private TextureView mTextureView;
     private SurfaceView mSurfaceView;
@@ -30,7 +36,6 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
     private Canvas canvas = new Canvas(bmp);
     private Paint paint1 = new Paint();
     private TextView mTextView;
-    int startY = 50*4;
 
     static long prevtime = 0; // for FPS calculation
 
@@ -51,15 +56,44 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
         paint1.setTextSize(24);
 
         pickRow = (SeekBar) findViewById(R.id.pickRow);
-        setMyControlListener();
+        pickRowText = (TextView) findViewById(R.id.pickRowText);
+        pickRowText.setText("Row to track: " + startY);
+        setMyRowListener();
+
+        pickThreshold = (SeekBar) findViewById(R.id.pickThreshold);
+        pickThresholdText = (TextView) findViewById(R.id.pickThresholdText);
+        pickThresholdText.setText("Threshold for black: " + blackThreshold);
+        setMyThresholdListener();
+
     }
 
-    private void setMyControlListener() {
+    private void setMyRowListener() {
         pickRow.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                startY = progress*4;
+                startY = progress*4; // Progress bar value*4 is row to track
+                pickRowText.setText("Row to track: " + startY);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    private void setMyThresholdListener() {
+        pickThreshold.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                blackThreshold = progress*7.5; // Progress bar value*4 is row to track
+                pickThresholdText.setText("Threshold for black: " + blackThreshold);
             }
 
             @Override
@@ -124,7 +158,7 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
                 // sum the red, green and blue, subtract from 255 to get the darkness of the pixel.
                 // if it is greater than some value (600 here), consider it black
                 // play with the 600 value if you are having issues reliably seeing the line
-                if (255*3-(red(pixels[i])+green(pixels[i])+blue(pixels[i])) > 600) {
+                if (255*3-(red(pixels[i])+green(pixels[i])+blue(pixels[i])) > blackThreshold) {
                     thresholdedPixels[i] = 255*3;
                 }
                 else {
