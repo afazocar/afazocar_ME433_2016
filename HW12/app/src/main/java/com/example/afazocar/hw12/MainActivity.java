@@ -13,12 +13,15 @@ import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import java.io.IOException;
 import static android.graphics.Color.blue;
 import static android.graphics.Color.green;
 import static android.graphics.Color.red;
 
 public class MainActivity extends Activity implements TextureView.SurfaceTextureListener {
+    SeekBar pickRow;
     private Camera mCamera;
     private TextureView mTextureView;
     private SurfaceView mSurfaceView;
@@ -27,6 +30,7 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
     private Canvas canvas = new Canvas(bmp);
     private Paint paint1 = new Paint();
     private TextView mTextView;
+    int startY = 50*4;
 
     static long prevtime = 0; // for FPS calculation
 
@@ -45,6 +49,28 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
 
         paint1.setColor(0xffff00ff); // red
         paint1.setTextSize(24);
+
+        pickRow = (SeekBar) findViewById(R.id.pickRow);
+        setMyControlListener();
+    }
+
+    private void setMyControlListener() {
+        pickRow.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                startY = progress*4;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
@@ -84,7 +110,7 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
         if (c != null) {
 
             int[] pixels = new int[bmp.getWidth()];
-            int startY = 50; // which row in the bitmap to analyse to read
+            //int startY = 50; // which row in the bitmap to analyse to read
             // only look at one row in the image
             bmp.getPixels(pixels, 0, bmp.getWidth(), 0, startY, bmp.getWidth(), 1); // (array name, offset inside array, stride (size of row), start x, start y, num pixels to read per row, num rows to read)
 
