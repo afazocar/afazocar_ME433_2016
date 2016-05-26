@@ -25,8 +25,12 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
     TextView    pickRowText;
     SeekBar     pickThreshold;
     TextView    pickThresholdText;
+    //SeekBar     pickFlash;
+    //TextView    pickFlashText;
     int         startY = 50*4; // Start tracking from row 200 (progress bar starts at 50%)
     double      blackThreshold = 80*7.5; // Start threshold at 600 (progress bar starts at 80%)
+    int         flashThreshold = 75;
+    //boolean     flashOn;
 
     private Camera mCamera;
     private TextureView mTextureView;
@@ -55,15 +59,29 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
         paint1.setColor(0xffff00ff); // red
         paint1.setTextSize(24);
 
-        pickRow = (SeekBar) findViewById(R.id.pickRow);
+        pickRow     = (SeekBar) findViewById(R.id.pickRow);
         pickRowText = (TextView) findViewById(R.id.pickRowText);
         pickRowText.setText("Row to track: " + startY);
         setMyRowListener();
 
-        pickThreshold = (SeekBar) findViewById(R.id.pickThreshold);
-        pickThresholdText = (TextView) findViewById(R.id.pickThresholdText);
+        pickThreshold       = (SeekBar) findViewById(R.id.pickThreshold);
+        pickThresholdText   = (TextView) findViewById(R.id.pickThresholdText);
         pickThresholdText.setText("Threshold for black: " + blackThreshold);
         setMyThresholdListener();
+
+        /*pickFlash       = (SeekBar) findViewById(R.id.pickFlash);
+        pickFlashText   = (TextView) findViewById(R.id.pickFlashText);
+        if (flashThreshold >= 50) {
+            pickFlashText.setText("Flash: ON");
+            flashOn = true;
+        }
+        else {
+            pickFlashText.setText("Flash: OFF");
+            flashOn = false;
+        }
+        setMyFlashListener();*/
+
+
 
     }
 
@@ -107,12 +125,46 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
         });
     }
 
+    /*private void setMyFlashListener() {
+        pickFlash.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+            //Camera.Parameters parameters = mCamera2.getParameters();
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (progress >= 50) {
+                    flashOn = true;
+                }
+                else {
+                    flashOn = false;
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }*/
+
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
         mCamera = Camera.open();
         Camera.Parameters parameters = mCamera.getParameters();
         parameters.setPreviewSize(640, 480);
         parameters.setColorEffect(Camera.Parameters.EFFECT_MONO); // black and white
         parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_INFINITY); // no autofocusing
+        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);    // turn on flash
+        /*if (flashOn) {
+            pickFlashText.setText("Flash: ON");
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+        }
+        else {
+            pickFlashText.setText("Flash: OFF");
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+        }*/
         //parameters.setAutoWhiteBalanceLock(true);                       // turn of autowhite balancing
         mCamera.setParameters(parameters);
         mCamera.setDisplayOrientation(90); // rotate to portrait mode
