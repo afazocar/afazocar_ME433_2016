@@ -24,13 +24,6 @@
             android:text="Nothing yet"
             android:id="@+id/cameraStatus"/>
 
-        <Button
-            android:id="@+id/startButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LAUNCH"
-            />
-
         <SurfaceView
             android:id="@+id/surfaceview"
             android:layout_width="640px"
@@ -54,21 +47,15 @@
             android:id="@+id/pickThresholdText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Threshold for green:" />
+            android:text="Threshold for black:" />
 
         <SeekBar
             android:id="@+id/pickThreshold"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:progress="0"
-            android:secondaryProgress="0" />
-
-        <TextView
-            android:id="@+id/debugPrint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DEBUG:" />
+            android:progress="80"
+            android:secondaryProgress="80" />
 
         <TextureView
             android:id="@+id/textureview"

@@ -7,16 +7,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.TextureView;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -30,15 +25,12 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
     TextView    pickRowText;
     SeekBar     pickThreshold;
     TextView    pickThresholdText;
-    TextView    debugPrint;
-    Button      startButton;
     //SeekBar     pickFlash;
     //TextView    pickFlashText;
     int         startY = 50*4; // Start tracking from row 200 (progress bar starts at 50%)
-    double      greenThreshold = 0; // Start threshold at 600 (progress bar starts at 80%)
+    double      blackThreshold = 80*7.5; // Start threshold at 600 (progress bar starts at 80%)
     int         flashThreshold = 75;
     //boolean     flashOn;
-    boolean     startMoving = false;
 
     private Camera mCamera;
     private TextureView mTextureView;
@@ -74,27 +66,8 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
 
         pickThreshold       = (SeekBar) findViewById(R.id.pickThreshold);
         pickThresholdText   = (TextView) findViewById(R.id.pickThresholdText);
-        pickThresholdText.setText("Threshold for green: " + greenThreshold);
+        pickThresholdText.setText("Threshold for black: " + blackThreshold);
         setMyThresholdListener();
-
-        debugPrint  = (TextView) findViewById(R.id.debugPrint);
-
-        startButton = (Button)this.findViewById(R.id.startButton);
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.rocket);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mp.start();
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        // Actions to do after 10.5 seconds
-                        startMoving = true;
-                    }
-                }, 10500);
-
-            }
-        });
 
         /*pickFlash       = (SeekBar) findViewById(R.id.pickFlash);
         pickFlashText   = (TextView) findViewById(R.id.pickFlashText);
@@ -107,8 +80,10 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
             flashOn = false;
         }
         setMyFlashListener();*/
-    }
 
+
+
+    }
 
     private void setMyRowListener() {
         pickRow.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -135,8 +110,8 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                greenThreshold = progress*2.5; // Progress bar value*4 is row to track
-                pickThresholdText.setText("Threshold for green: " + greenThreshold);
+                blackThreshold = progress*7.5; // Progress bar value*4 is row to track
+                pickThresholdText.setText("Threshold for black: " + blackThreshold);
             }
 
             @Override
@@ -179,9 +154,9 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
         mCamera = Camera.open();
         Camera.Parameters parameters = mCamera.getParameters();
         parameters.setPreviewSize(640, 480);
-        parameters.setColorEffect(Camera.Parameters.EFFECT_NONE); // black and white
+        parameters.setColorEffect(Camera.Parameters.EFFECT_MONO); // black and white
         parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_INFINITY); // no autofocusing
-        //parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);    // turn on flash
+        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);    // turn on flash
         /*if (flashOn) {
             pickFlashText.setText("Flash: ON");
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
@@ -235,19 +210,12 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
                 // sum the red, green and blue, subtract from 255 to get the darkness of the pixel.
                 // if it is greater than some value (600 here), consider it black
                 // play with the 600 value if you are having issues reliably seeing the line
-                if (green(pixels[i]) > greenThreshold) {
-                    thresholdedPixels[i] = 0;
-                }
-                else {
-                    thresholdedPixels[i] = 255;
-                }
-
-                /*if (255*3-(red(pixels[i])+green(pixels[i])+blue(pixels[i])) > blackThreshold) {
+                if (255*3-(red(pixels[i])+green(pixels[i])+blue(pixels[i])) > blackThreshold) {
                     thresholdedPixels[i] = 255*3;
                 }
                 else {
                     thresholdedPixels[i] = 0;
-                }*/
+                }
                 wbTotal = wbTotal + thresholdedPixels[i];
                 wbCOM = wbCOM + thresholdedPixels[i]*i;
             }
@@ -273,17 +241,6 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
             long diff = nowtime - prevtime;
             mTextView.setText("FPS " + 1000/diff);
             prevtime = nowtime;
-
-
-            if (startMoving) {
-                if (COM < bmp.getWidth() / 2) {
-                    debugPrint.setText("TURN LEFT");
-                } else if (COM > bmp.getWidth() / 2) {
-                    debugPrint.setText("TURN RIGHT");
-                } else {
-                    debugPrint.setText("GO STRAIGHT");
-                }
-            }
         }
     }
 }
