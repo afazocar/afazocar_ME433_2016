@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/afazocar/AndroidStudioProjects/HW13/usbSerialExamples/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="app_name">HW13</string>
+    <string name="app_title">USB Serial Example</string>
+    <string name="refreshing">Refreshing...</string>
+    <string name="textBtnDTR">DTR - Data Terminal Ready</string>
+    <string name="textBtnRTS">RTS - Request To Send</string>
+</resources>
