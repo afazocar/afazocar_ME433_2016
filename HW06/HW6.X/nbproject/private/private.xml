@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW6/HW6.X/main.c</file>
+            <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW06/HW6.X/main.c</file>
+            <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW06/HW6.X/imu.h</file>
+            <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW06/HW6.X/i2c.h</file>
+            <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW06/HW6.X/i2c.c</file>
+            <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW06/HW6.X/imu.c</file>
         </group>
     </open-files>
 </project-private>
