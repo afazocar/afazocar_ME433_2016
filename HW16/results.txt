@@ -1,0 +1,26 @@
+My tech cup entry was very simple, yet efficient.
+
+On the android side:
+	•	I tracked the line using one row only. The row could be selected in real time via a slider.
+	•	The line was tracked by taking the difference between green and red pixels. The threshold could also be selected in real time via a slider.
+	•	The android app could send 5 possible integers to the PIC, each determining a different state:
+		1.	Don’t move- initial state
+		2.	Turn left- when center of line was between 33% and 49% of screen width
+		3.	Turn right- when center of line was between 51% and 66% of screen width
+		4.	Turn hard left- when center of line was less than 33% of screen width
+		5.	Turn hard right- when center of line was more than 66% of screen width
+	•	When the center of mass was in the center of the image (line was outside of image), no command was sent. This resulted in the car continuing to turn in the direction it was going before the line was lost. This was extremely useful for steep turns.
+
+On the PIC32 side:
+	•	Each motor was controlled via simple PWM. The PWM duty cycles depended on the different states:
+		1.	Don’t move- 0% duty cycle on both motors
+		2.	Turn left- 50% duty cycle on left motor, 100% duty cycle on right motor
+		3.	Turn right- 100% duty cycle on left motor, 50% duty cycle on right motor
+		4.	Turn hard left- 17% duty cycle on left motor, 100% duty cycle on right motor
+		5.	Turn hard right- 100% duty cycle on left motor, 17% duty cycle on right motor
+
+Since I made a rocket, I also added the sound of a launch countdown and rocket engines firing (to loop throughout race); however, the sound was not loud enough, so I disabled it for the race.
+
+I initially had the PIC and cables at the rear of the rocket, but that shifted the center of mass too far back and would occasionally prevent the wheels from spinning. The final race configuration has the majority of the mass directly over the wheels to prevent this from happening.
+
+During practice runs I was averaging 1:03 minutes per lap. During the actual race, the robot stepped up its game and finished in 1:02 minutes.
