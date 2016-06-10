@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:id="@+id/demoScroller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/picReturnTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PIC Return:" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nothing yet"
+                android:id="@+id/cameraStatus"/>
+
+            <Button
+                android:id="@+id/startButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LAUNCH"
+                />
+
+            <SurfaceView
+                android:id="@+id/surfaceview"
+                android:layout_width="640px"
+                android:layout_height="480px" />
+
+            <TextView
+                android:id="@+id/pickRowText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Row to track:" />
+
+            <SeekBar
+                android:id="@+id/pickRow"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:progress="50"
+                android:secondaryProgress="50" />
+
+            <TextView
+                android:id="@+id/pickThresholdText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Threshold for green:" />
+
+            <SeekBar
+                android:id="@+id/pickThreshold"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:progress="0"
+                android:secondaryProgress="0" />
+
+            <TextView
+                android:id="@+id/debugPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DEBUG:" />
+
+            <TextureView
+                android:id="@+id/textureview"
+                android:layout_width="640px"
+                android:layout_height="480px" />
+
+
+
+
+
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/demoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="@string/app_title"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/separator"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#eeeeee" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textBtnDTR"
+                android:id="@+id/checkBoxDTR" />
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textBtnRTS"
+                android:id="@+id/checkBoxRTS" />
+
+            <View
+                android:id="@+id/separator2"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/demoTitle"
+                android:layout_height="1dip"
+                android:background="#eeeeee" />
+
+
+
+            <TextView
+                android:id="@+id/consoleText"
+                android:textIsSelectable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:typeface="monospace" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+<!-- From: file:/Users/afazocar/AndroidStudioProjects/cdcCamera/usbSerialExamples/src/main/res/layout/serial_console.xml -->

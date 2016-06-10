@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/afazocar/AndroidStudioProjects/cdcCamera/usbSerialExamples/build/intermediates/exploded-aar/com.hoho.android/usbSerialForAndroid/0.2.0-SNAPSHOT/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1909e25d727111990492e3e512bf02740ba6bee6">
+        <dex dex="/Users/afazocar/AndroidStudioProjects/cdcCamera/usbSerialExamples/build/intermediates/pre-dexed/debug/classes-2cde98d77e2d5a851cf19febfac9fe3f06489433.jar" />
+    </item>
+    <item
+        jar="/Users/afazocar/AndroidStudioProjects/HW13/usbSerialExamples/build/intermediates/exploded-aar/com.hoho.android/usbSerialForAndroid/0.2.0-SNAPSHOT/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b4deb3c1f9c290d8f55db8f0c3319dd133406ce4">
+        <dex dex="/Users/afazocar/AndroidStudioProjects/HW13/usbSerialExamples/build/intermediates/pre-dexed/debug/classes-005e0c9862e632d915fd9379f6d4d2deaf69ee1f.jar" />
+    </item>
+
+</items>
