@@ -81,7 +81,7 @@ int main ( void )
     DDPCONbits.JTAGEN   = 0;    // disable JTAG to get pins back
     TRISAbits.TRISA4    = 0;    // RA4 is output
     TRISBbits.TRISB4    = 1;    // RB4 is input
-    LATAbits.LATA4  = 0;        // LED is off
+    LATAbits.LATA4      = 0;    // LED is off
     i2cMasterSetup();
     __builtin_enable_interrupts();
     

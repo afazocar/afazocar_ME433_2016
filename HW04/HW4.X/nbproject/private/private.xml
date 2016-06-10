@@ -5,6 +5,11 @@
         <group>
             <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW04/HW4.X/main.c</file>
             <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW04/HW4.X/i2cSetup.h</file>
+            <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW04/HW4.X/i2cSetup.c</file>
+            <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW04/HW4.X/pinExp.c</file>
+            <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW04/HW4.X/spiSetup.c</file>
+            <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW04/HW4.X/spiSetup.h</file>
+            <file>file:/Users/afazocar/Desktop/afazocar_ME433_2016/HW04/HW4.X/pinExp.h</file>
         </group>
     </open-files>
 </project-private>

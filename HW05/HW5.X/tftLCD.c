@@ -1,8 +1,6 @@
 #include "tftLCD.h"
 #include <xc.h>
 
-// TFT LCD Code adapted from https://github.com/sumotoy/TFT_ILI9163C/blob/master/TFT_ILI9163C.cpp
-
 #define CS LATBbits.LATB7       // Chip Select
 
 void initSPI() {
@@ -27,28 +25,28 @@ void initSPI() {
 
 unsigned char spiIO(unsigned char o) {
   SPI1BUF = o;
-  while(!SPI1STATbits.SPIRBF) { // wait to receive the byte
+  while(!SPI1STATbits.SPIRBF) {
     ;
   }
   return SPI1BUF;
 }
 
 void LCD_command(unsigned char com) {
-    LATBbits.LATB15 = 0; // DAT
+    LATBbits.LATB15 = 0;
     CS = 0;
     spiIO(com);
     CS = 1;
 }
 
 void LCD_data(unsigned char dat) {
-    LATBbits.LATB15 = 1; // DAT
+    LATBbits.LATB15 = 1;
     CS = 0;
     spiIO(dat);
     CS = 1;
 }
 
 void LCD_data16(unsigned short dat) {
-    LATBbits.LATB15 = 1; // DAT
+    LATBbits.LATB15 = 1;
     CS = 0;
     spiIO(dat>>8);
     spiIO(dat);

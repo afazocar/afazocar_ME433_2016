@@ -471,7 +471,6 @@ void APP_Tasks ( void )
             }
 
             /* Check if a character was received on the UART */
-
             if (txFlag == 1) {
                 char len = sprintf(tx,"qq = %d\r\n",qq);
                 for (ii = 0;ii<len;ii++) {

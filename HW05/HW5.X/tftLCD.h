@@ -167,15 +167,15 @@ static const char ASCII[96][5] = {
 static unsigned char pGammaSet[15]= {0x36,0x29,0x12,0x22,0x1C,0x15,0x42,0xB7,0x2F,0x13,0x12,0x0A,0x11,0x0B,0x06};
 static unsigned char nGammaSet[15]= {0x09,0x16,0x2D,0x0D,0x13,0x15,0x40,0x48,0x53,0x0C,0x1D,0x25,0x2E,0x34,0x39};
 
-unsigned char spiIO(unsigned char);         // Send/receive a byte over SPI
-void LCD_command(unsigned char);            // Send command to LCD
-void LCD_data(unsigned char);               // Send data to LCD
-void LCD_data16(unsigned short);            // Send 16 bit data to LCD
-void initLCD(void);                         // Initialize LCD
-void LCD_drawPixel(unsigned short, unsigned short, unsigned short);                 // Set x,y pixel to a color
-void LCD_setAddr(unsigned short, unsigned short, unsigned short, unsigned short);   // Set memory address you are writing to
-void LCD_clearScreen(unsigned short);                                               // Set color of every pixel
-void LCD_drawChar(unsigned short, unsigned short, unsigned char);                   // Print character to LCD
-void LCD_drawString(unsigned short, unsigned short, unsigned char*);                // Print string to LCD
+unsigned char   spiIO(unsigned char);         // Send/receive a byte over SPI
+void            LCD_command(unsigned char);            // Send command to LCD
+void            LCD_data(unsigned char);               // Send data to LCD
+void            LCD_data16(unsigned short);            // Send 16 bit data to LCD
+void            initLCD(void);                         // Initialize LCD
+void            LCD_drawPixel(unsigned short, unsigned short, unsigned short);                 // Set x,y pixel to a color
+void            LCD_setAddr(unsigned short, unsigned short, unsigned short, unsigned short);   // Set memory address you are writing to
+void            LCD_clearScreen(unsigned short);                                               // Set color of every pixel
+void            LCD_drawChar(unsigned short, unsigned short, unsigned char);                   // Print character to LCD
+void            LCD_drawString(unsigned short, unsigned short, unsigned char*);                // Print string to LCD
 
 #endif

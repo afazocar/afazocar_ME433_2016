@@ -74,7 +74,5 @@ int main() {
             LATAbits.LATA4 = !LATAbits.LATA4;
             _CP0_SET_COUNT(0);
         }
-    }
-    
-    
+    } 
 }

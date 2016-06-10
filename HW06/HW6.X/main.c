@@ -39,15 +39,20 @@ int main()
         char2short(data,output,14);
         oc1New = (PER2+1)/2+(output[4]/20);
         oc2New = (PER2+1)/2+(output[5]/20);
+        
         if(oc1New>(PER2+1)){
             oc1New=(PER2+1);
         }
         if(oc2New>(PER2+1)){
             oc2New=(PER2+1);
         }
+        
         OC1RS = oc1New;
         OC2RS = oc2New;
         LATAbits.LATA4 = !LATAbits.LATA4;
-        while(_CP0_GET_COUNT()<UPDATER){;}
+        
+        while(_CP0_GET_COUNT()<UPDATER){
+            ;
+        }
     }   
 }

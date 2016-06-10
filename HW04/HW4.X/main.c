@@ -1,6 +1,5 @@
 #include "pragmaConfig.h"
 #define  LEVELS     (int)       256
-#define  PI         (double)    3.14159265
 #define  I2C_FREQ   (int)       12000000
 #define  PIC_FREQ   (int)       48000000
 #define  A_FREQ     (int)       10
@@ -11,18 +10,18 @@
 int main()
 {
     // Sine wave setup
-    int             Acount  = 0;
+    int             A_count = 0;
     int             i       = 0;
-    unsigned char   Alevel  = 0;
-    unsigned char   Blevel  = 0;
+    unsigned char   A_level = 0;
+    unsigned char   B_level = 0;
     unsigned char   sine[A_UPDATER];
     
     for (;i<A_UPDATER;i++)
     {
-        sine[i] = ((LEVELS-1)/2*sin(((double)(2*PI*Acount))/((double)LEVELS)*2))+(LEVELS/2);
-        Acount++;
+        sine[i] = ((LEVELS-1)/2*sin(((double)(2*3.14*A_count))/((double)LEVELS)*2))+(LEVELS/2);
+        A_count++;
     }
-    Acount = 0;
+    A_count = 0;
     
     // PIC32 Setup
     __builtin_disable_interrupts();
@@ -43,11 +42,11 @@ int main()
     while(1)
     {
         _CP0_SET_COUNT(0);
-        setVoltage(A,Alevel); // Sine wave
-        setVoltage(B,Blevel); // Triangle wave
-        Alevel = sine[Acount];
-        Acount++;
-        Blevel++;
+        setVoltage(A,A_level);  // Sine wave
+        setVoltage(B,B_level);  // Triangle wave
+        A_level = sine[A_count];
+        A_count++;
+        B_level++;
         while(_CP0_GET_COUNT()<(B_UPDATER/2)){;}
     }   
 }

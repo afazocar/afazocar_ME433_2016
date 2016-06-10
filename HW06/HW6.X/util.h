@@ -1,5 +1,6 @@
 #ifndef UTIL_H
 #define UTIL_H
+
 #include <xc.h>
 #define PIC_FREQ    48000000
 #define SAM_FREQ    50

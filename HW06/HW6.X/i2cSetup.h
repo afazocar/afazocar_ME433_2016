@@ -11,15 +11,15 @@
 #define     WHOAMI_VAL  (char)  0x69    //  0b01101001
 #define     IMU_ADDR    (char)  0x6B    //  0b1101011x(R/W)
 
-char i2cMasterRead(char device, char reg_addr);
-void i2cMasterReadAll(char device,char start_reg,int numval,unsigned char* array);
-void i2cMasterWrite(char device, char reg_addr, char byte);
-void i2cMasterSetup(void);              // set up I2C2 as a master, at 100 kHz
-void i2cMasterStart(void);              // send a START signal
-void i2cMasterRestart(void);            // send a RESTART signal
-void i2cMasterSend(unsigned char byte); // send a byte (either an address or data)
-unsigned char i2cMasterRecv(void);      // receive a byte of data
-void i2cMasterAck(int val);             // send an ACK (0) or NACK (1)
-void i2cMasterStop(void);               // send a stop
+char            i2cMasterRead(char device, char reg_addr);
+void            i2cMasterReadAll(char device,char start_reg,int numval,unsigned char* array);
+void            i2cMasterWrite(char device, char reg_addr, char byte);
+void            i2cMasterSetup(void);  
+void            i2cMasterStart(void);  
+void            i2cMasterRestart(void);
+void            i2cMasterSend(unsigned char byte);
+unsigned char   i2cMasterRecv(void);  
+void            i2cMasterAck(int val);
+void            i2cMasterStop(void); 
 
 #endif
