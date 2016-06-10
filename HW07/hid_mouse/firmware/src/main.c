@@ -59,6 +59,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <stdbool.h>                    // Defines true
 #include <stdlib.h>                     // Defines EXIT_FAILURE
 #include "system/common/sys_module.h"   // SYS function prototypes
+#include "i2cSetup.h"
+#include "util.h"
 
 
 // *****************************************************************************
@@ -69,14 +71,24 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 int main ( void )
 {
+    
     /* Initialize all MPLAB Harmony modules, including application(s). */
     SYS_Initialize ( NULL );
-
+    __builtin_disable_interrupts();
+     __builtin_mtc0(_CP0_CONFIG,_CP0_CONFIG_SELECT,0xa4210583);
+    BMXCONbits.BMXWSDRM = 0x0;  // 0 data RAM access wait states
+    INTCONbits.MVEC     = 0x1;  // enable multi vector interrupts
+    DDPCONbits.JTAGEN   = 0;    // disable JTAG to get pins back
+    TRISAbits.TRISA4    = 0;    // RA4 is output
+    TRISBbits.TRISB4    = 1;    // RB4 is input
+    LATAbits.LATA4  = 0;        // LED is off
+    i2cMasterSetup();
+    __builtin_enable_interrupts();
+    
     while ( true )
     {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
         SYS_Tasks ( );
-
     }
 
     /* Execution should not come here during normal operation */
@@ -88,4 +100,3 @@ int main ( void )
 /*******************************************************************************
  End of File
 */
-

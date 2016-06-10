@@ -144,4 +144,3 @@ void MOUSE_ReportCreate
 	return;	
 }
 
-

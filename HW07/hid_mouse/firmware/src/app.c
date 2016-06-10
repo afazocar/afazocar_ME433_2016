@@ -346,9 +346,9 @@ void APP_Tasks ( void )
     static int8_t   vector = 0;
     static uint8_t  movement_length = 0;
     static bool     sent_dont_move = false;
-
-    int8_t dir_table[] ={-4,-4,-4, 0, 4, 4, 4, 0};
-	
+    unsigned char   data[14];
+    short           output[7];   
+    	
     /* Check the application's current state. */
     switch ( appData.state )
     {
@@ -407,10 +407,15 @@ void APP_Tasks ( void )
 
                 if(movement_length > 50)
                 {
+                    _CP0_SET_COUNT(0);
+                    i2cMasterReadAll(IMU_ADDR,OUT_TEMP_L,14,data);
+                    char2short(data,output,14);
+                    LATAbits.LATA4 = !LATAbits.LATA4;
+                    while(_CP0_GET_COUNT()<UPDATER){;} 
                     appData.mouseButton[0] = MOUSE_BUTTON_STATE_RELEASED;
                     appData.mouseButton[1] = MOUSE_BUTTON_STATE_RELEASED;
-                    appData.xCoordinate =(int8_t)dir_table[vector & 0x07] ;
-                    appData.yCoordinate =(int8_t)dir_table[(vector+2) & 0x07];
+                    appData.xCoordinate =(int8_t)(output[4]/500);//dir_table[vector & 0x07] ;
+                    appData.yCoordinate =(int8_t)(output[5]/500);//dir_table[(vector+2) & 0x07];
                     vector ++;
                     movement_length = 0;
                 }
@@ -510,4 +515,3 @@ void APP_Tasks ( void )
 /*******************************************************************************
  End of File
  */
-

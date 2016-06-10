@@ -328,6 +328,10 @@
         <itemPath>../src/app.c</itemPath>
         <itemPath>../src/main.c</itemPath>
         <itemPath>../src/mouse.c</itemPath>
+        <itemPath>../src/i2cSetup.c</itemPath>
+        <itemPath>../src/i2cSetup.h</itemPath>
+        <itemPath>../src/util.c</itemPath>
+        <itemPath>../src/util.h</itemPath>
       </logicalFolder>
       <logicalFolder name="bsp" displayName="bsp" projectFiles="true">
         <logicalFolder name="f7" displayName="chipkit_wifire" projectFiles="true">
