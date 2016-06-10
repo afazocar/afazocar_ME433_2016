@@ -14,6 +14,12 @@
                    projectFiles="true">
       <itemPath>main.c</itemPath>
       <itemPath>pragmaConfig.h</itemPath>
+      <itemPath>spiSetup.h</itemPath>
+      <itemPath>spiSetup.c</itemPath>
+      <itemPath>pinExp.h</itemPath>
+      <itemPath>pinExp.c</itemPath>
+      <itemPath>i2cSetup.h</itemPath>
+      <itemPath>i2cSetup.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

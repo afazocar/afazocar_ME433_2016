@@ -3,6 +3,9 @@
 
 #include <xc.h>           // processor SFR definitions
 #include <sys/attribs.h>  // __ISR macro
+#include "util.h"
+#include "i2cSetup.h"
+#include <math.h>
 
 // DEVCFG0
 #pragma config DEBUG        = OFF       // no debugging

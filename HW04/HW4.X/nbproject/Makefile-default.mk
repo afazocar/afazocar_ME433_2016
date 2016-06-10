@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c spiSetup.c pinExp.c i2cSetup.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/spiSetup.o ${OBJECTDIR}/pinExp.o ${OBJECTDIR}/i2cSetup.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/spiSetup.o.d ${OBJECTDIR}/pinExp.o.d ${OBJECTDIR}/i2cSetup.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/spiSetup.o ${OBJECTDIR}/pinExp.o ${OBJECTDIR}/i2cSetup.o
 
 # Source Files
-SOURCEFILES=main.c
+SOURCEFILES=main.c spiSetup.c pinExp.c i2cSetup.c
 
 
 CFLAGS=
@@ -100,12 +100,48 @@ ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/main.o 
 	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c     
 	
+${OBJECTDIR}/spiSetup.o: spiSetup.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/spiSetup.o.d 
+	@${RM} ${OBJECTDIR}/spiSetup.o 
+	@${FIXDEPS} "${OBJECTDIR}/spiSetup.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/spiSetup.o.d" -o ${OBJECTDIR}/spiSetup.o spiSetup.c     
+	
+${OBJECTDIR}/pinExp.o: pinExp.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/pinExp.o.d 
+	@${RM} ${OBJECTDIR}/pinExp.o 
+	@${FIXDEPS} "${OBJECTDIR}/pinExp.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/pinExp.o.d" -o ${OBJECTDIR}/pinExp.o pinExp.c     
+	
+${OBJECTDIR}/i2cSetup.o: i2cSetup.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/i2cSetup.o.d 
+	@${RM} ${OBJECTDIR}/i2cSetup.o 
+	@${FIXDEPS} "${OBJECTDIR}/i2cSetup.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/i2cSetup.o.d" -o ${OBJECTDIR}/i2cSetup.o i2cSetup.c     
+	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c     
+	
+${OBJECTDIR}/spiSetup.o: spiSetup.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/spiSetup.o.d 
+	@${RM} ${OBJECTDIR}/spiSetup.o 
+	@${FIXDEPS} "${OBJECTDIR}/spiSetup.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/spiSetup.o.d" -o ${OBJECTDIR}/spiSetup.o spiSetup.c     
+	
+${OBJECTDIR}/pinExp.o: pinExp.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/pinExp.o.d 
+	@${RM} ${OBJECTDIR}/pinExp.o 
+	@${FIXDEPS} "${OBJECTDIR}/pinExp.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/pinExp.o.d" -o ${OBJECTDIR}/pinExp.o pinExp.c     
+	
+${OBJECTDIR}/i2cSetup.o: i2cSetup.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/i2cSetup.o.d 
+	@${RM} ${OBJECTDIR}/i2cSetup.o 
+	@${FIXDEPS} "${OBJECTDIR}/i2cSetup.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/i2cSetup.o.d" -o ${OBJECTDIR}/i2cSetup.o i2cSetup.c     
 	
 endif
 

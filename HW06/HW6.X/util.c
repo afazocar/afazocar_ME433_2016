@@ -9,7 +9,7 @@ void char2short(char *data, short *output, int sizedata)
     }
 }
 
-void tim2_setup(void)
+void tim2Setup(void)
 {
     T2CONbits.TCKPS 	= 4;			// timer2 pre-scaler N=16 (1:16)
 	PR2 				= PER2;			// period2 = (4999+1) * 16 * 12.5ns = 0.001s, 1 kHz
@@ -17,7 +17,7 @@ void tim2_setup(void)
     T2CONbits.ON		= 1;			// turn on Timer2
 }
 
-void oc1_setup(void)
+void oc1Setup(void)
 {
     RPA0Rbits.RPA0R     = 0x05;         // RA0 - OC1
     OC1CONbits.OCM		= 0x06;         // PWM mode without fault pin; other OC1CON bits are defaults
@@ -27,7 +27,7 @@ void oc1_setup(void)
 	OC1CONbits.ON		= 1;			// turn on OC1
 }
 
-void oc2_setup(void)
+void oc2Setup(void)
 {
     RPA1Rbits.RPA1R     = 0x05;         // RA1 - OC2
     OC2CONbits.OCM		= 0x06;         // PWM mode without fault pin; other OC2CON bits are defaults
